@@ -1,0 +1,49 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.by.domain.LinkMan" table="cst_linkman">
+    <!-- 建立OID与主键的映射 -->
+    <id name="lkm_id">
+      <column name="lkm_id" />
+      <generator class="native"></generator>
+    </id>
+
+    <!-- 建立类中的普通属性和数据库表中字段的映射 -->
+    <property name="lkm_name">
+      <column name="lkm_name" />
+    </property>
+    <property name="lkm_gender">
+      <column name="lkm_gender" />
+    </property>
+    <property name="lkm_phone">
+      <column name="lkm_phone" />
+    </property>
+    <property name="lkm_mobile">
+      <column name="lkm_mobile" />
+    </property>
+    <property name="lkm_email">
+      <column name="lkm_email" />
+    </property>
+    <property name="lkm_qq">
+      <column name="lkm_qq" />
+    </property>
+    <property name="lkm_position">
+      <column name="lkm_position" />
+    </property>
+    <property name="lkm_memo">
+      <column name="lkm_memo" />
+    </property>
+
+    <!-- 配置多对一的关系：放置的是一的一方的对象 -->
+    <!--
+      many-to-one标签：
+        1. name		：	一的一方的对象的属性名称
+        2. class	：	一的一方的类的全路径
+        3. column	：	在多的一方的表的外键名称
+    -->
+    <many-to-one name="customer" class="com.by.domain.Customer">
+      <column name="lkm_cust_id" />
+    </many-to-one>
+  </class>
+</hibernate-mapping>

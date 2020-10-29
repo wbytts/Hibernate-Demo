@@ -3,33 +3,49 @@
   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-  <!-- 建立类与表的映射 -->
-  <class name="com.by.domain.Customer" table="customer">
-    <!-- 建立类中的属性与表中的主键相对应 -->
+  <class name="com.by.domain.Customer" table="cst_customer">
+    <!-- 建立OID与主键的映射 -->
     <id name="cust_id">
       <column name="cust_id" />
-      <!-- 主键的生成策略，后面会讲，现在使用的是本地生成策略 -->
-      <generator class="native" />
+      <generator class="native"></generator>
     </id>
 
-    <!-- 建立类中的普通属性和表中的字段相对应 -->
-    <property name="cust_name" type="java.lang.String">
+    <!-- 建立类中的普通属性和数据库表中字段的映射 -->
+    <property name="cust_name">
       <column name="cust_name" />
     </property>
-    <property name="cust_source" type="java.lang.String">
+    <property name="cust_source">
       <column name="cust_source" />
     </property>
-    <property name="cust_industry" type="java.lang.String">
+    <property name="cust_industry">
       <column name="cust_industry" />
     </property>
-    <property name="cust_level" type="java.lang.String">
+    <property name="cust_level">
       <column name="cust_level" />
     </property>
-    <property name="cust_phone" type="java.lang.String">
+    <property name="cust_phone">
       <column name="cust_phone" />
     </property>
-    <property name="cust_mobile" type="java.lang.String">
+    <property name="cust_mobile">
       <column name="cust_mobile" />
     </property>
+
+    <!-- 配置一对多的映射：放置的是多的一方的对象的集合 -->
+    <!--
+      set标签：
+        1. name：多的一方的对象集合的属性名称
+    -->
+    <set name="linkMans">
+      <!--
+        key标签：
+          1. column：多的一方的外键的名称
+      -->
+      <key column="lkm_cust_id"></key>
+      <!--
+        one-to-many标签：
+          1. class：多的一方的类的全路径
+      -->
+      <one-to-many class="com.by.domain.LinkMan" />
+    </set>
   </class>
 </hibernate-mapping>

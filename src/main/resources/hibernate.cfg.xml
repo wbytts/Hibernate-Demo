@@ -49,12 +49,15 @@
     -->
     <property name="hibernate.hbm2ddl.auto">update</property>
 
+    <property name="hibernate.current_session_context_class">thread</property>
+
 
     <!--指定关联的mapping映射文件-->
     <!--注意resource是路径，而不是包名-->
     <mapping resource="com/by/domain/User.hbm.xml" />
     <mapping resource="com/by/domain/Course.hbm.xml"/>
     <mapping resource="com/by/domain/Customer.hbm.xml" />
+    <mapping resource="com/by/domain/LinkMan.hbm.xml" />
 
   </session-factory>
 </hibernate-configuration>

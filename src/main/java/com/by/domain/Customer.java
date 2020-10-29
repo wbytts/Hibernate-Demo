@@ -1,5 +1,8 @@
 package com.by.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @author wangby
  * @version 0.0.1
@@ -14,6 +17,10 @@ public class Customer {
     private String cust_level;
     private String cust_phone;
     private String cust_mobile;
+
+    //通过ORM方式表示：一个客户对应多个联系人
+    //这儿放置的是多的一方的集合。Hibernate默认使用的是Set集合。
+    private Set<LinkMan> linkMans = new HashSet<LinkMan>();
 
     public Long getCust_id() {
         return cust_id;
@@ -57,11 +64,11 @@ public class Customer {
     public void setCust_mobile(String cust_mobile) {
         this.cust_mobile = cust_mobile;
     }
-    @Override
-    public String toString() {
-        return "Customer [cust_id=" + cust_id + ", cust_name=" + cust_name + ", cust_source=" + cust_source
-            + ", cust_industry=" + cust_industry + ", cust_level=" + cust_level + ", cust_phone=" + cust_phone
-            + ", cust_mobile=" + cust_mobile + "]";
+    public Set<LinkMan> getLinkMans() {
+        return linkMans;
+    }
+    public void setLinkMans(Set<LinkMan> linkMans) {
+        this.linkMans = linkMans;
     }
 
 }

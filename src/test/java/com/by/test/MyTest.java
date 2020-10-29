@@ -52,10 +52,19 @@ public class MyTest {
                 public Object get(String entityName, Serializable id);
                 public Object get(String entityName, Serializable id, LockOptions lockOptions);
          */
-        User user = (User)session.get(User.class, 1L);
+        User user = (User)session.get(User.class, 3L);
         // 或者
         // User user = (User) session.get("com.by.domain.User", 1L);
         System.out.println(user);
+
+        // 由于Session缓存，第二次查询相同id的数据时，不会再发送SQL语句了
+        User user2 = (User)session.get(User.class, 3L);
+
+        // load 方法与get不同，是懒加载的，只有在被使用到时才会发送SQL语句
+        // 返回的是一个代理的对象
+        User user3 = (User)session.load(User.class, 5L);
+        System.out.println("###User user3 = (User)session.load(User.class, 5L);");
+        System.out.println(user3);
 
         transaction.commit();
         session.close();

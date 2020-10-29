@@ -20,12 +20,16 @@ public class HibernateDemo01 {
     @Test public void test01() {
         //1. 加载Hibernate的核心配置文件（Configuration类主要是用于加载Hibernate的核心配置文件）
         Configuration configuration = new Configuration().configure();
+        // Configuration configuration = new Configuration() // 主要加载的是src目录下的hibernate.properties
         //如果在Hibernate的核心配置文件没有设置加载哪个映射文件，则可手动加载映射文件
         //configuration.addResource("com/meimeixia/hibernate/demo01/Customer.hbm.xml");
         //或者可以向下面这样，这种方式它会直接在实体类所在包下查找规范的映射配置文件
         //configuration.addClass(Customer.class);
 
         //2. 创建SessionFactory对象，类似于JDBC中的连接池
+        // SessionFactory 负责初始化Hibernate，它充当数据存储源的代理，并负责创建Session对象
+        // SessionFactory 并不是轻量级的，一般来说，一个项目只有一个。（所以不要频繁创建关闭它）
+        // 当需要操作多个数据源时，可以为每个数据源指定一个 SessionFactory
         SessionFactory sessionFactory = configuration.buildSessionFactory();
 
         //3. 通过SessionFactory获取到Session对象，类似于JDBC中的Connection
