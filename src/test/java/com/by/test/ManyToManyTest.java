@@ -243,8 +243,4 @@ public class ManyToManyTest {
 
         tx.commit();
     }
-
-
-
-
 }
