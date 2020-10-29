@@ -5,37 +5,29 @@
 <hibernate-mapping>
   <class name="com.by.domain.Customer" table="cst_customer">
     <!-- 建立OID与主键的映射 -->
-    <id name="cust_id">
-      <column name="cust_id" />
+    <id name="cust_id" column="cust_id">
       <generator class="native"></generator>
     </id>
 
     <!-- 建立类中的普通属性和数据库表中字段的映射 -->
-    <property name="cust_name">
-      <column name="cust_name" />
-    </property>
-    <property name="cust_source">
-      <column name="cust_source" />
-    </property>
-    <property name="cust_industry">
-      <column name="cust_industry" />
-    </property>
-    <property name="cust_level">
-      <column name="cust_level" />
-    </property>
-    <property name="cust_phone">
-      <column name="cust_phone" />
-    </property>
-    <property name="cust_mobile">
-      <column name="cust_mobile" />
-    </property>
+    <property name="cust_name" column="cust_name" />
+    <property name="cust_source" column="cust_source" />
+    <property name="cust_industry" column="cust_industry" />
+    <property name="cust_level" column="cust_level" />
+    <property name="cust_phone" column="cust_phone" />
+    <property name="cust_mobile" column="cust_mobile" />
+
 
     <!-- 配置一对多的映射：放置的是多的一方的对象的集合 -->
     <!--
       set标签：
         1. name：多的一方的对象集合的属性名称
+        2. cascade：级联（要在主体对象的映射文件中配置），可以配置多个选项，用逗号分隔
+              save-update：在保存一个数据时，另一方的数据也会保存
+              delete：在删除一方的时候，同时会将另一方的数据也一并删除掉
+              delete-orphan：字面意思是删除孤儿，其实指的是删除与当前对象解除关系的对象
     -->
-    <set name="linkMans">
+    <set name="linkMans" cascade="delete">
       <!--
         key标签：
           1. column：多的一方的外键的名称

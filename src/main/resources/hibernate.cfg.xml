@@ -48,7 +48,7 @@
       validate：会和数据库中的表进行比较，如果列在表中并不存在，则会抛出异常（作用主要是校验映射关系和表结构）
     -->
     <property name="hibernate.hbm2ddl.auto">update</property>
-
+    <!-- 配置当前线程来绑定的 Session -->
     <property name="hibernate.current_session_context_class">thread</property>
 
 
@@ -58,6 +58,8 @@
     <mapping resource="com/by/domain/Course.hbm.xml"/>
     <mapping resource="com/by/domain/Customer.hbm.xml" />
     <mapping resource="com/by/domain/LinkMan.hbm.xml" />
+    <mapping resource="com/by/domain/SysUser.hbm.xml" />
+    <mapping resource="com/by/domain/SysRole.hbm.xml" />
 
   </session-factory>
 </hibernate-configuration>

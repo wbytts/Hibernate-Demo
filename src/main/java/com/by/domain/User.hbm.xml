@@ -3,8 +3,6 @@
   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-
-
   <!--
     name属性：类的全路径
     table属性：映射到数据库里面的那个表的名称，如果表的名称与类名一致，那么table属性可以省略
@@ -25,11 +23,10 @@
       <column name="name" />
     </property>
 
-    <property name="pwd" type="java.lang.String">
-      <column name="pwd" />
-    </property>
-
-
+    <!--
+      column 可以配置在 property里，也可以单独写在子元素 column 里
+    -->
+    <property name="pwd" type="java.lang.String" column="pwd" />
   </class>
 
 </hibernate-mapping>
