@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+  "-//Hibernate/Hibernate Configuration DTD//EN"
+  "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!-- hibernate 核心配置文件 -->
+<hibernate-configuration>
+
+  <!--会话工厂配置-->
+  <session-factory>
+    <!--数据源配置-->
+    <!--数据库连接-->
+    <property name="connection.url">jdbc:mysql://39.96.162.54:3306/demo?useUnicode=true&amp;characterEncoding=UTF-8&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</property>
+    <!--数据库驱动-->
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+    <!--用户名-->
+    <property name="connection.username">root</property>
+    <!--密码-->
+    <property name="connection.password">qweqwe</property>
+
+    <!--c3p0配置-->
+    <!--设置每次增长数量-->
+    <property name="hibernate.c3p0.acquire_increment">10</property>
+    <!--设置失效时间-->
+    <property name="hibernate.c3p0.idle_test_period">10000</property>
+    <!--设置超时时间-->
+    <property name="hibernate.c3p0.timeout">5000</property>
+    <!--最大连接数-->
+    <property name="hibernate.c3p0.max_size">30</property>
+    <!--最小连接数-->
+    <property name="hibernate.c3p0.min_size">5</property>
+    <!--最大线程数（同时执行语句数）-->
+    <property name="hibernate.c3p0.max_statements">10</property>
+
+    <!--其他的一些配置-->
+    <!-- SQL dialect 配置SQL方言 -->
+    <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+    <!-- 打印所有执行的SQL到控制台 -->
+    <property name="show_sql">true</property>
+    <!--以格式良好的方式显示SQL语句-->
+    <!--<property name="format_sql">true</property>-->
+
+    <!-- 数据库表的更新策略 -->
+    <!--
+    可选的取值：
+      create：根据.hbm.xml文件生成表，但是每次启动都会删除上一次的表，重新生成（一般在测试中使用）
+      create-drop：会根据.hbm.xml生成表，但是sessionFactory一关闭，表就会删除（并不常用）
+      update：也会根据.hbm.xml生成表，若.hbm.xml与数据库表结构不同，则会更新表（但不会删除已有的行和列）（常用）
+      validate：会和数据库中的表进行比较，如果列在表中并不存在，则会抛出异常（作用主要是校验映射关系和表结构）
+    -->
+    <property name="hibernate.hbm2ddl.auto">update</property>
+
+
+    <!--指定关联的mapping映射文件-->
+    <!--注意resource是路径，而不是包名-->
+    <mapping resource="com/by/domain/User.hbm.xml" />
+    <mapping resource="com/by/domain/Course.hbm.xml"/>
+    <mapping resource="com/by/domain/Customer.hbm.xml" />
+
+  </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,35 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+
+  <!--
+    name属性：类的全路径
+    table属性：映射到数据库里面的那个表的名称，如果表的名称与类名一致，那么table属性可以省略
+    catalog属性：数据库名称，可以省略，如果省略，则参考核心配置文件中url路径中的库名称
+  -->
+  <class name="com.by.domain.User" table="user">
+    <id name="id" type="java.lang.Long">
+      <column name="id"/>
+      <!--指定主键的生成方式-->
+      <!--
+        native：使用数据库本地的方式
+        increment：增长的方式
+      -->
+      <generator class="increment"/>
+    </id>
+
+    <property name="name" type="java.lang.String">
+      <column name="name" />
+    </property>
+
+    <property name="pwd" type="java.lang.String">
+      <column name="pwd" />
+    </property>
+
+
+  </class>
+
+</hibernate-mapping>
